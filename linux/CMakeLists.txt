@@ -17,11 +17,11 @@ add_library(${PLUGIN_NAME} SHARED
   "errors.cc"
 )
 
-pkg_check_modules(APPINDICATOR IMPORTED_TARGET ayatana-appindicator3-0.1)
+pkg_check_modules(APPINDICATOR IMPORTED_TARGET libayatana-appindicator3)
 if(APPINDICATOR_FOUND)
   target_compile_definitions(${PLUGIN_NAME} PRIVATE HAVE_AYATANA)
 else()
-  pkg_check_modules(APPINDICATOR IMPORTED_TARGET appindicator3-0.1)
+  pkg_check_modules(APPINDICATOR IMPORTED_TARGET appindicator3)
 endif()
 if(APPINDICATOR_FOUND)
   target_link_libraries(${PLUGIN_NAME} PRIVATE PkgConfig::APPINDICATOR)
@@ -29,7 +29,7 @@ else()
   message(
     FATAL_ERROR
     "\n"
-    "The `system_tray` package requires ayatana-appindicator3-0.1 or appindicator3-0.1."
+    "The `system_tray` package requires libayatana-appindicator3 or appindicator3."
   )
 endif()
 
